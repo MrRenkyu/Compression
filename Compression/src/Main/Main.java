@@ -12,6 +12,8 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		FileManager fichier1 = new FileManager("text1.txt");
+		System.out.println(fichier1.getByteSize_InitialContentFile());
+		fichier1.setCompressContentFile("");
 		System.out.println(fichier1.getByteSize_CompressFile());
 	}
 

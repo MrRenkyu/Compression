@@ -9,7 +9,8 @@ public class FileManager {
 
 	File fileToCompress;
 	String pathToFolder;
-	String InitialContentOfFile="";
+	String initialContentFile="";
+	String compressContentFile="";
 
 	public FileManager(String fileName) throws FileNotFoundException {
 		super();
@@ -22,26 +23,46 @@ public class FileManager {
 	private void readDocument() throws FileNotFoundException {
 		 Scanner myReader = new Scanner(fileToCompress);
 	      while (myReader.hasNextLine()) {
-	    	  InitialContentOfFile += myReader.nextLine()+"\n";
+	    	  initialContentFile += myReader.nextLine()+"\n";
 	      }
 	      myReader.close();
-	      System.out.println(InitialContentOfFile);
+	      System.out.println(initialContentFile);
 	}
 		
-	
-	
-
-	public String getInitialContentOfFile() {
-		return InitialContentOfFile;
-	}
 	public long getByteSize_CompressFile() throws IOException {
 		 FileWriter myWriter = new FileWriter(pathToFolder+"result.txt");
-	      myWriter.write(InitialContentOfFile);
+		 if(compressContentFile == "" || compressContentFile ==null) {
+			 System.out.println("compressContentFile is null, please set value before call this method.");
+			 myWriter.close();
+			 return 0;
+		 }
+	      myWriter.write(compressContentFile);
 	      myWriter.close();
 	      
 	      File result = new File(pathToFolder+"result.txt");
 	      return result.length();
 	}
+	
+	public long getByteSize_InitialContentFile() throws IOException {
+	      return fileToCompress.length();
+	}
+	
+
+	
+	public String getInitialContentOfFile() {
+		return initialContentFile;
+	}
+
+	public String getCompressContentFile() {
+		return compressContentFile;
+	}
+
+	public void setCompressContentFile(String compressContentFile) {
+		this.compressContentFile = compressContentFile;
+	}
+	
+	
+
 	
 	
 	
