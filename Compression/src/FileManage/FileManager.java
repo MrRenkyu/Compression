@@ -1,27 +1,52 @@
 package FileManage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FileManager {
 
 	File fileToCompress;
-	String contentOfFile;
+	String pathToFolder;
+	String InitialContentOfFile="";
 
-	public FileManager(String path) throws FileNotFoundException {
+	public FileManager(String fileName) throws FileNotFoundException {
 		super();
-		this.fileToCompress = new File(path);
+		File tamp = new File("");
+		this.fileToCompress = new File(tamp.getAbsolutePath()+"\\src\\fichier\\"+fileName);
+		pathToFolder = tamp.getAbsolutePath()+"\\src\\fichier\\";
 		readDocument();
 	}
 	
 	private void readDocument() throws FileNotFoundException {
 		 Scanner myReader = new Scanner(fileToCompress);
 	      while (myReader.hasNextLine()) {
-	        contentOfFile += myReader.nextLine()+"\n";
+	    	  InitialContentOfFile += myReader.nextLine()+"\n";
 	      }
 	      myReader.close();
-	      System.out.println(contentOfFile);
+	      System.out.println(InitialContentOfFile);
 	}
+		
+	
+	
+
+	public String getInitialContentOfFile() {
+		return InitialContentOfFile;
+	}
+	public long getByteSize_CompressFile() throws IOException {
+		 FileWriter myWriter = new FileWriter(pathToFolder+"result.txt");
+	      myWriter.write(InitialContentOfFile);
+	      myWriter.close();
+	      
+	      File result = new File(pathToFolder+"result.txt");
+	      return result.length();
+	}
+	
+	
+	
+	
+	
 	
 	
 }
