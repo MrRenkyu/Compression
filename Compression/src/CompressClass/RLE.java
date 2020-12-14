@@ -23,7 +23,7 @@ public class RLE {
 			System.out.print(str.charAt(i));
 			
 		}
-		return "";
+		return str+"";
 	}
 	
 }
